@@ -47,8 +47,23 @@
 	  	</div>
 	</nav>
 
-   	<!-- Further modification here -->
-   	{% block content %}
+	<!-- Display flash messages -->
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			{% for catgeory, message in messages %}
+				<div class="alert alert-{{catgeory}}">
+					<button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+						{{ message }}
+
+				</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+
+  <!-- Further modification here -->
+  {% block content %}
     	
 	{% endblock %}
 
